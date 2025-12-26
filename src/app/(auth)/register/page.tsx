@@ -1,21 +1,23 @@
-"use client";
+'use client';
 
-import { register } from "@/app/actions/auth";
-import Link from "next/link";
-import { useActionState } from "react";
+import { register } from '@/app/actions/auth';
+import Link from 'next/link';
+import { useActionState } from 'react';
 
 const initialState = {
-    error: "",
+    error: '',
 };
 
 export default function RegisterPage() {
-    const registerAction = async (_state?: typeof initialState, formData?: FormData) => {
-        if (!formData) return { error: "No form data provided" };
+    const registerAction = async (
+        _state?: typeof initialState,
+        formData?: FormData
+    ) => {
+        if (!formData) return { error: 'No form data provided' };
         return await register(formData);
     };
 
     const [state, formAction] = useActionState(registerAction, initialState);
-
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">

@@ -1,35 +1,35 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useState } from 'react';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginPage() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setError("");
+        setError('');
 
         try {
-            const result = await signIn("credentials", {
+            const result = await signIn('credentials', {
                 email,
                 password,
                 redirect: false,
             });
 
             if (result?.error) {
-                setError("Invalid credentials");
+                setError('Invalid credentials');
             } else {
-                router.push("/");
+                router.push('/');
                 router.refresh();
             }
         } catch (err) {
-            setError("Something went wrong");
+            setError('Something went wrong');
         }
     };
 
@@ -66,7 +66,9 @@ export default function LoginPage() {
                     </div>
 
                     {error && (
-                        <div className="text-sm text-red-500 text-center">{error}</div>
+                        <div className="text-sm text-red-500 text-center">
+                            {error}
+                        </div>
                     )}
 
                     <div>

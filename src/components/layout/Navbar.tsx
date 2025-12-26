@@ -1,16 +1,23 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { Briefcase, FileText, MessageSquare, Sparkles, Moon, Sun } from "lucide-react";
-import { motion } from "framer-motion";
-import { useTheme } from "./ThemeProvider";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import {
+    Briefcase,
+    FileText,
+    MessageSquare,
+    Sparkles,
+    Moon,
+    Sun,
+} from 'lucide-react';
+import { motion } from 'framer-motion';
+import { useTheme } from './ThemeProvider';
 
 const navItems = [
-    { name: "Resume Optimizer", href: "/resume-optimizer", icon: FileText },
-    { name: "Cover Letter", href: "/cover-letter", icon: Sparkles },
-    { name: "Interview Coach", href: "/interview-coach", icon: MessageSquare },
+    { name: 'Resume Optimizer', href: '/resume-optimizer', icon: FileText },
+    { name: 'Cover Letter', href: '/cover-letter', icon: Sparkles },
+    { name: 'Interview Coach', href: '/interview-coach', icon: MessageSquare },
 ];
 
 export function Navbar() {
@@ -20,7 +27,10 @@ export function Navbar() {
     return (
         <nav className="sticky top-0 z-50 w-full border-b dark:border-white/10 border-black/10 bg-background/80 backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
-                <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight">
+                <Link
+                    href="/"
+                    className="flex items-center gap-2 font-bold text-xl tracking-tight"
+                >
                     <div className="p-1.5 bg-primary rounded-lg">
                         <Briefcase className="h-5 w-5 text-white" />
                     </div>
@@ -37,8 +47,10 @@ export function Navbar() {
                                 key={item.href}
                                 href={item.href}
                                 className={cn(
-                                    "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary",
-                                    isActive ? "text-primary" : "text-muted-foreground"
+                                    'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary',
+                                    isActive
+                                        ? 'text-primary'
+                                        : 'text-muted-foreground'
                                 )}
                             >
                                 <item.icon className="h-4 w-4" />
@@ -47,7 +59,11 @@ export function Navbar() {
                                     <motion.div
                                         layoutId="navbar-indicator"
                                         className="absolute bottom-0 h-0.5 w-full bg-primary"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                                        transition={{
+                                            type: 'spring',
+                                            bounce: 0.2,
+                                            duration: 0.6,
+                                        }}
                                     />
                                 )}
                             </Link>
@@ -61,7 +77,7 @@ export function Navbar() {
                         className="p-2 rounded-lg dark:hover:bg-white/10 hover:bg-black/5 transition-colors"
                         aria-label="Toggle theme"
                     >
-                        {theme === "dark" ? (
+                        {theme === 'dark' ? (
                             <Sun className="h-5 w-5 text-yellow-500" />
                         ) : (
                             <Moon className="h-5 w-5 text-primary" />

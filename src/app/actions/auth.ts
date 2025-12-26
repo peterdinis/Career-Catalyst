@@ -1,18 +1,18 @@
-"use server";
+'use server';
 
-import { db } from "@/db";
-import { users } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import bcrypt from "bcryptjs";
-import { signIn } from "@/auth";
+import { db } from '@/db';
+import { users } from '@/db/schema';
+import { eq } from 'drizzle-orm';
+import bcrypt from 'bcryptjs';
+import { signIn } from '@/auth';
 
 export async function register(formData: FormData) {
-    const name = formData.get("name") as string;
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
 
     if (!name || !email || !password) {
-        return { error: "Missing required fields" };
+        return { error: 'Missing required fields' };
     }
 
     // Check if user already exists
@@ -23,7 +23,7 @@ export async function register(formData: FormData) {
         .get();
 
     if (existingUser) {
-        return { error: "User already exists" };
+        return { error: 'User already exists' };
     }
 
     // Hash password
@@ -37,9 +37,9 @@ export async function register(formData: FormData) {
     });
 
     // Sign in the user
-    await signIn("credentials", {
+    await signIn('credentials', {
         email,
         password,
-        redirectTo: "/",
+        redirectTo: '/',
     });
 }

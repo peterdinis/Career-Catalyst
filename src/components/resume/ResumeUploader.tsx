@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { useCallback} from "react";
-import { useDropzone } from "react-dropzone";
-import { UploadCloud, FileText, X, CheckCircle } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { cn } from "@/lib/utils";
+import { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
+import { UploadCloud, FileText, X, CheckCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 interface ResumeUploaderProps {
     onUpload: (file: File) => void;
@@ -12,7 +12,11 @@ interface ResumeUploaderProps {
     setFile: (file: File | null) => void;
 }
 
-export function ResumeUploader({ onUpload, file, setFile }: ResumeUploaderProps) {
+export function ResumeUploader({
+    onUpload,
+    file,
+    setFile,
+}: ResumeUploaderProps) {
     const onDrop = useCallback(
         (acceptedFiles: File[]) => {
             if (acceptedFiles.length > 0) {
@@ -27,11 +31,10 @@ export function ResumeUploader({ onUpload, file, setFile }: ResumeUploaderProps)
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
         accept: {
-            "application/pdf": [".pdf"],
-            "text/plain": [".txt"],
-            "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [
-                ".docx",
-            ],
+            'application/pdf': ['.pdf'],
+            'text/plain': ['.txt'],
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+                ['.docx'],
         },
         maxFiles: 1,
     });
@@ -46,11 +49,11 @@ export function ResumeUploader({ onUpload, file, setFile }: ResumeUploaderProps)
             <div
                 {...getRootProps()}
                 className={cn(
-                    "border-2 border-dashed rounded-xl p-8 transition-all cursor-pointer relative overflow-hidden group",
+                    'border-2 border-dashed rounded-xl p-8 transition-all cursor-pointer relative overflow-hidden group',
                     isDragActive
-                        ? "border-primary bg-primary/10"
-                        : "border-white/10 hover:border-primary/50 hover:bg-white/5",
-                    file ? "bg-primary/5 border-primary/50" : ""
+                        ? 'border-primary bg-primary/10'
+                        : 'border-white/10 hover:border-primary/50 hover:bg-white/5',
+                    file ? 'bg-primary/5 border-primary/50' : ''
                 )}
             >
                 <input {...getInputProps()} />
@@ -69,7 +72,9 @@ export function ResumeUploader({ onUpload, file, setFile }: ResumeUploaderProps)
                             </div>
                             <div>
                                 <p className="text-lg font-medium">
-                                    {isDragActive ? "Drop your resume here" : "Upload your resume"}
+                                    {isDragActive
+                                        ? 'Drop your resume here'
+                                        : 'Upload your resume'}
                                 </p>
                                 <p className="text-sm text-muted-foreground mt-1">
                                     PDF, DOCX, or TXT (Max 5MB)

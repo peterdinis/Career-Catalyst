@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { generateWithGemini, isGeminiConfigured } from "@/lib/gemini";
+import { NextResponse } from 'next/server';
+import { generateWithGemini, isGeminiConfigured } from '@/lib/gemini';
 
 export async function POST(req: Request) {
     try {
@@ -18,45 +18,50 @@ export async function POST(req: Request) {
                     brevity: 75,
                 },
                 keywords: {
-                    missing: ["Agile Methodology", "Cloud Computing", "Stakeholder Management", "CI/CD"],
-                    overused: ["Team player", "Hardworking", "Motivated"],
+                    missing: [
+                        'Agile Methodology',
+                        'Cloud Computing',
+                        'Stakeholder Management',
+                        'CI/CD',
+                    ],
+                    overused: ['Team player', 'Hardworking', 'Motivated'],
                     suggested: [
-                        "Led cross-functional teams in Agile environments",
-                        "Implemented CI/CD pipelines using Jenkins",
+                        'Led cross-functional teams in Agile environments',
+                        'Implemented CI/CD pipelines using Jenkins',
                     ],
                 },
                 formatting: {
                     issues: [
-                        "Date format inconsistency (use MM/YYYY)",
-                        "Multiple columns detected (may confuse older ATS)",
+                        'Date format inconsistency (use MM/YYYY)',
+                        'Multiple columns detected (may confuse older ATS)',
                     ],
                     suggestions: [
-                        "Standardize date formats",
-                        "Switch to single-column layout for work experience",
+                        'Standardize date formats',
+                        'Switch to single-column layout for work experience',
                     ],
                 },
                 impactRewrites: [
                     {
-                        original: "Responsible for managing the team.",
+                        original: 'Responsible for managing the team.',
                         alternatives: [
-                            "Led a team of 5 engineers to deliver project X ahead of schedule.",
-                            "Orchestrated daily stand-ups and sprint planning, increasing velocity by 20%.",
-                            "Mentored junior developers, resulting in 0% attrition over 12 months.",
+                            'Led a team of 5 engineers to deliver project X ahead of schedule.',
+                            'Orchestrated daily stand-ups and sprint planning, increasing velocity by 20%.',
+                            'Mentored junior developers, resulting in 0% attrition over 12 months.',
                         ],
                     },
                     {
-                        original: "Worked on the frontend code.",
+                        original: 'Worked on the frontend code.',
                         alternatives: [
-                            "Architected the frontend using React and Redux, improving load time by 40%.",
-                            "Developed reusable UI components, reducing development time for future features.",
-                            "Optimized rendering performance, boosting Lighthouse score from 60 to 95.",
+                            'Architected the frontend using React and Redux, improving load time by 40%.',
+                            'Developed reusable UI components, reducing development time for future features.',
+                            'Optimized rendering performance, boosting Lighthouse score from 60 to 95.',
                         ],
                     },
                 ],
                 fixes: [
                     "Add 'Agile Methodology' and 'CI/CD' to your Skills section.",
-                    "Quantify your leadership experience with specific team sizes and outcomes.",
-                    "Change the resume layout to a single column for better parsing.",
+                    'Quantify your leadership experience with specific team sizes and outcomes.',
+                    'Change the resume layout to a single column for better parsing.',
                 ],
             };
 
@@ -102,10 +107,10 @@ Analyze this resume against the job description and provide a detailed ATS optim
 
 Return ONLY valid JSON, no markdown formatting.`;
 
-        const { cachedData } = await import("@/lib/cache");
+        const { cachedData } = await import('@/lib/cache');
         const getAnalysis = cachedData(
             () => generateWithGemini(prompt),
-            ["analyze-resume", JSON.stringify({ resumeText, jobDescription })], // Cache based on inputs
+            ['analyze-resume', JSON.stringify({ resumeText, jobDescription })], // Cache based on inputs
             3600 // 1 hour
         );
 
@@ -118,15 +123,15 @@ Return ONLY valid JSON, no markdown formatting.`;
             const jsonMatch = response.match(/\{[\s\S]*\}/);
             jsonResponse = JSON.parse(jsonMatch ? jsonMatch[0] : response);
         } catch (parseError) {
-            console.error("Failed to parse Gemini response:", response);
-            throw new Error("Invalid response format from AI");
+            console.error('Failed to parse Gemini response:', response);
+            throw new Error('Invalid response format from AI');
         }
 
         return NextResponse.json(jsonResponse);
     } catch (error) {
-        console.error("Resume analysis error:", error);
+        console.error('Resume analysis error:', error);
         return NextResponse.json(
-            { error: "Failed to analyze resume" },
+            { error: 'Failed to analyze resume' },
             { status: 500 }
         );
     }

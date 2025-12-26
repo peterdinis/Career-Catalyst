@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { CoverLetterForm } from "@/components/cover-letter/CoverLetterForm";
-import { GeneratedLetter } from "@/components/cover-letter/GeneratedLetter";
-import { motion } from "framer-motion";
-import { useCoverLetter } from "@/hooks/useCoverLetter";
+import { useState } from 'react';
+import { CoverLetterForm } from '@/components/cover-letter/CoverLetterForm';
+import { GeneratedLetter } from '@/components/cover-letter/GeneratedLetter';
+import { motion } from 'framer-motion';
+import { useCoverLetter } from '@/hooks/useCoverLetter';
 
 export default function CoverLetterPage() {
-    const [letter, setLetter] = useState("");
+    const [letter, setLetter] = useState('');
     const { generate, isGenerating } = useCoverLetter();
 
     const handleGenerate = async (formData: unknown) => {
@@ -15,7 +15,7 @@ export default function CoverLetterPage() {
             const data = await generate(formData);
             setLetter(data.letter);
         } catch (error) {
-            console.error("Failed to generate", error);
+            console.error('Failed to generate', error);
         }
     };
 
@@ -23,21 +23,22 @@ export default function CoverLetterPage() {
         if (!letter) return;
 
         try {
-            const { saveCoverLetter } = await import("@/app/actions/cover-letter");
+            const { saveCoverLetter } =
+                await import('@/app/actions/cover-letter');
             const response = await saveCoverLetter(
                 `Cover Letter - ${new Date().toLocaleDateString()}`,
                 letter,
-                "Job Description", // Placeholder, ideally from state
-                "Company Name" // Placeholder, ideally from state
+                'Job Description', // Placeholder, ideally from state
+                'Company Name' // Placeholder, ideally from state
             );
 
             if (response.error) {
-                alert("Failed to save");
+                alert('Failed to save');
             } else {
-                alert("Saved to Dashboard!");
+                alert('Saved to Dashboard!');
             }
         } catch (error) {
-            console.error("Failed to save", error);
+            console.error('Failed to save', error);
         }
     };
 
@@ -48,7 +49,9 @@ export default function CoverLetterPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="mb-12 text-center"
             >
-                <h1 className="text-4xl font-bold mb-4">Cover Letter Generator</h1>
+                <h1 className="text-4xl font-bold mb-4">
+                    Cover Letter Generator
+                </h1>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
                     Create a compelling, personalized cover letter in seconds.
                     Tailored to the job, the company, and your unique story.
@@ -57,7 +60,10 @@ export default function CoverLetterPage() {
 
             {!letter ? (
                 <div className="glass-card p-8 rounded-2xl">
-                    <CoverLetterForm onSubmit={handleGenerate} isGenerating={isGenerating} />
+                    <CoverLetterForm
+                        onSubmit={handleGenerate}
+                        isGenerating={isGenerating}
+                    />
                 </div>
             ) : (
                 <div className="space-y-6">
@@ -69,7 +75,10 @@ export default function CoverLetterPage() {
                             Save to Dashboard
                         </button>
                     </div>
-                    <GeneratedLetter letter={letter} onReset={() => setLetter("")} />
+                    <GeneratedLetter
+                        letter={letter}
+                        onReset={() => setLetter('')}
+                    />
                 </div>
             )}
         </div>

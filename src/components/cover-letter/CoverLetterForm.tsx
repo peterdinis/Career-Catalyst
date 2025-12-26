@@ -1,24 +1,31 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Loader2, Sparkles } from "lucide-react";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Loader2, Sparkles } from 'lucide-react';
 
 interface CoverLetterFormProps {
     onSubmit: (data: unknown) => void;
     isGenerating: boolean;
 }
 
-export function CoverLetterForm({ onSubmit, isGenerating }: CoverLetterFormProps) {
+export function CoverLetterForm({
+    onSubmit,
+    isGenerating,
+}: CoverLetterFormProps) {
     const [formData, setFormData] = useState({
-        jobDescription: "",
-        companyName: "",
-        hiringManager: "",
-        userExperience: "",
-        tone: "Professional",
+        jobDescription: '',
+        companyName: '',
+        hiringManager: '',
+        userExperience: '',
+        tone: 'Professional',
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const handleChange = (
+        e: React.ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >
+    ) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
@@ -47,7 +54,9 @@ export function CoverLetterForm({ onSubmit, isGenerating }: CoverLetterFormProps
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Hiring Manager (Optional)</label>
+                    <label className="text-sm font-medium">
+                        Hiring Manager (Optional)
+                    </label>
                     <input
                         name="hiringManager"
                         value={formData.hiringManager}
@@ -71,7 +80,9 @@ export function CoverLetterForm({ onSubmit, isGenerating }: CoverLetterFormProps
             </div>
 
             <div className="space-y-2">
-                <label className="text-sm font-medium">Your Key Achievements / Experience</label>
+                <label className="text-sm font-medium">
+                    Your Key Achievements / Experience
+                </label>
                 <textarea
                     name="userExperience"
                     value={formData.userExperience}
@@ -104,7 +115,8 @@ export function CoverLetterForm({ onSubmit, isGenerating }: CoverLetterFormProps
             >
                 {isGenerating ? (
                     <>
-                        <Loader2 className="h-5 w-5 animate-spin" /> Generating Magic...
+                        <Loader2 className="h-5 w-5 animate-spin" /> Generating
+                        Magic...
                     </>
                 ) : (
                     <>

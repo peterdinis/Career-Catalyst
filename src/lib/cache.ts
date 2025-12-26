@@ -1,4 +1,4 @@
-import { unstable_cache } from "next/cache";
+import { unstable_cache } from 'next/cache';
 
 // Helper to cache async functions (DB calls, API fetches)
 export const cachedData = <T>(
@@ -28,4 +28,3 @@ export async function cachedFetch<T>(
 
     return cachedData(fetcher, [...keys, url], revalidate)();
 }
-

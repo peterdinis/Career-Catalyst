@@ -1,10 +1,10 @@
-import { auth } from "@/auth";
-import { db } from "@/db";
-import { resumes, coverLetters } from "@/db/schema";
-import { eq, desc } from "drizzle-orm";
-import { redirect } from "next/navigation";
-import Link from "next/link";
-import { FileText, Sparkles, Calendar } from "lucide-react";
+import { auth } from '@/auth';
+import { db } from '@/db';
+import { resumes, coverLetters } from '@/db/schema';
+import { eq, desc } from 'drizzle-orm';
+import { redirect } from 'next/navigation';
+import Link from 'next/link';
+import { FileText, Sparkles, Calendar } from 'lucide-react';
 
 async function getResumes(userId: string) {
     return db
@@ -26,7 +26,7 @@ export default async function DashboardPage() {
     const session = await auth();
 
     if (!session?.user?.id) {
-        redirect("/login");
+        redirect('/login');
     }
 
     const [userResumes, userCoverLetters] = await Promise.all([
@@ -71,14 +71,19 @@ export default async function DashboardPage() {
                                     className="glass-card p-6 rounded-xl hover:bg-white/5 transition-colors group"
                                 >
                                     <div className="flex justify-between items-start mb-2">
-                                        <h3 className="font-semibold text-lg">{resume.title}</h3>
+                                        <h3 className="font-semibold text-lg">
+                                            {resume.title}
+                                        </h3>
                                         <span className="text-xs text-muted-foreground flex items-center gap-1">
                                             <Calendar className="h-3 w-3" />
-                                            {new Date(resume.createdAt).toLocaleDateString()}
+                                            {new Date(
+                                                resume.createdAt
+                                            ).toLocaleDateString()}
                                         </span>
                                     </div>
                                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                                        Analysis Score: {JSON.parse(resume.content).score}/100
+                                        Analysis Score:{' '}
+                                        {JSON.parse(resume.content).score}/100
                                     </p>
                                     <button className="text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                                         View Analysis &rarr;
@@ -116,14 +121,19 @@ export default async function DashboardPage() {
                                     className="glass-card p-6 rounded-xl hover:bg-white/5 transition-colors group"
                                 >
                                     <div className="flex justify-between items-start mb-2">
-                                        <h3 className="font-semibold text-lg">{letter.title}</h3>
+                                        <h3 className="font-semibold text-lg">
+                                            {letter.title}
+                                        </h3>
                                         <span className="text-xs text-muted-foreground flex items-center gap-1">
                                             <Calendar className="h-3 w-3" />
-                                            {new Date(letter.createdAt).toLocaleDateString()}
+                                            {new Date(
+                                                letter.createdAt
+                                            ).toLocaleDateString()}
                                         </span>
                                     </div>
                                     <p className="text-sm text-muted-foreground mb-1">
-                                        {letter.companyName || "Unknown Company"}
+                                        {letter.companyName ||
+                                            'Unknown Company'}
                                     </p>
                                     <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
                                         {letter.content}

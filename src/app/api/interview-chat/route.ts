@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-import { generateWithGemini, isGeminiConfigured } from "@/lib/gemini";
+import { NextResponse } from 'next/server';
+import { generateWithGemini, isGeminiConfigured } from '@/lib/gemini';
 
 export async function POST(req: Request) {
     try {
@@ -21,21 +21,26 @@ export async function POST(req: Request) {
 
             // Mock Feedback Logic
             const feedback = {
-                strengths: ["Good clarity", "Mentioned relevant experience"],
-                improvements: ["Could be more specific about outcomes", "Use more action verbs"],
-                betterAnswer: "A stronger answer would quantify your impact, e.g., 'I improved X by Y%'.",
+                strengths: ['Good clarity', 'Mentioned relevant experience'],
+                improvements: [
+                    'Could be more specific about outcomes',
+                    'Use more action verbs',
+                ],
+                betterAnswer:
+                    "A stronger answer would quantify your impact, e.g., 'I improved X by Y%'.",
                 score: 7,
             };
 
             // Mock Next Question Logic
             const nextQuestions = [
-                "Can you describe a challenging technical problem you solved recently?",
-                "How do you handle disagreements with stakeholders?",
-                "Tell me about a time you failed and what you learned.",
-                "What is your approach to testing and quality assurance?",
+                'Can you describe a challenging technical problem you solved recently?',
+                'How do you handle disagreements with stakeholders?',
+                'Tell me about a time you failed and what you learned.',
+                'What is your approach to testing and quality assurance?',
             ];
 
-            const randomQuestion = nextQuestions[Math.floor(Math.random() * nextQuestions.length)];
+            const randomQuestion =
+                nextQuestions[Math.floor(Math.random() * nextQuestions.length)];
 
             return NextResponse.json({
                 message: randomQuestion,
@@ -53,12 +58,12 @@ export async function POST(req: Request) {
         }
 
         const lastUserMessage = messages[messages.length - 1];
-        const conversationHistory = messages.map((m: {
-            role: "user" | "assistant";
-            content: string;
-        }) =>
-            `${m.role === 'user' ? 'Candidate' : 'Interviewer'}: ${m.content}`
-        ).join('\n');
+        const conversationHistory = messages
+            .map(
+                (m: { role: 'user' | 'assistant'; content: string }) =>
+                    `${m.role === 'user' ? 'Candidate' : 'Interviewer'}: ${m.content}`
+            )
+            .join('\n');
 
         const prompt = `You are an interview coach who has conducted 5000+ interviews at FAANG companies. You are simulating a realistic interview.
 
@@ -102,25 +107,24 @@ Return ONLY valid JSON, no markdown formatting.`;
             const jsonMatch = response.match(/\{[\s\S]*\}/);
             jsonResponse = JSON.parse(jsonMatch ? jsonMatch[0] : response);
         } catch (parseError) {
-            console.error("Failed to parse Gemini response:", response);
+            console.error('Failed to parse Gemini response:', response);
             // Fallback to simple response
             return NextResponse.json({
-                message: "Can you tell me more about that experience?",
+                message: 'Can you tell me more about that experience?',
                 feedback: {
-                    strengths: ["Good start"],
-                    improvements: ["Add more specific details"],
-                    betterAnswer: "Try to include metrics and outcomes.",
+                    strengths: ['Good start'],
+                    improvements: ['Add more specific details'],
+                    betterAnswer: 'Try to include metrics and outcomes.',
                     score: 6,
                 },
             });
         }
 
         return NextResponse.json(jsonResponse);
-
     } catch (error) {
-        console.error("Interview chat error:", error);
+        console.error('Interview chat error:', error);
         return NextResponse.json(
-            { error: "Failed to generate response" },
+            { error: 'Failed to generate response' },
             { status: 500 }
         );
     }
