@@ -2,7 +2,7 @@ import useSWRMutation from "swr/mutation";
 
 async function generateCoverLetter(
     url: string,
-    { arg }: { arg: any }
+    { arg }: { arg: unknown }
 ) {
     const response = await fetch(url, {
         method: "POST",

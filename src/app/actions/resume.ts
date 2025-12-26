@@ -5,7 +5,7 @@ import { db } from "@/db";
 import { resumes } from "@/db/schema";
 import { revalidatePath } from "next/cache";
 
-export async function saveResume(title: string, content: any) {
+export async function saveResume(title: string, content: string) {
     const session = await auth();
 
     if (!session?.user?.id) {

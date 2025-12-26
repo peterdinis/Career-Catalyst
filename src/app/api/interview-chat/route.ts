@@ -53,7 +53,10 @@ export async function POST(req: Request) {
         }
 
         const lastUserMessage = messages[messages.length - 1];
-        const conversationHistory = messages.map((m: any) =>
+        const conversationHistory = messages.map((m: {
+            role: "user" | "assistant";
+            content: string;
+        }) =>
             `${m.role === 'user' ? 'Candidate' : 'Interviewer'}: ${m.content}`
         ).join('\n');
 
