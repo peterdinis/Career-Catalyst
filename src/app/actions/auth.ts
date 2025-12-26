@@ -16,7 +16,7 @@ export async function register(formData: FormData) {
     }
 
     // Check if user already exists
-    const existingUser = await db
+    const existingUser = db
         .select()
         .from(users)
         .where(eq(users.email, email))
