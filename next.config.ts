@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
   experimental: {
+    typedEnv: true,
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 };
