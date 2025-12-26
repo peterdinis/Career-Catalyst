@@ -3,12 +3,12 @@ import useSWRMutation from "swr/mutation";
 interface Message {
     role: "user" | "assistant";
     content: string;
-    feedback?: any;
+    feedback?: unknown;
 }
 
 async function sendInterviewMessage(
     url: string,
-    { arg }: { arg: { messages: Message[]; config: any } }
+    { arg }: { arg: { messages: Message[]; config: unknown } }
 ) {
     const response = await fetch(url, {
         method: "POST",

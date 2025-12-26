@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { motion } from "framer-motion";
-import { MessageSquare, Play } from "lucide-react";
+import { Play } from "lucide-react";
 
 interface SetupFormProps {
-    onStart: (config: any) => void;
+    onStart: (config: unknown) => void;
 }
 
 export function SetupForm({ onStart }: SetupFormProps) {
@@ -17,11 +17,11 @@ export function SetupForm({ onStart }: SetupFormProps) {
         difficulty: "Medium",
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    const handleChange = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
         setConfig({ ...config, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         onStart(config);
     };

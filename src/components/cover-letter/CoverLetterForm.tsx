@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Loader2, Sparkles } from "lucide-react";
 
 interface CoverLetterFormProps {
-    onSubmit: (data: any) => void;
+    onSubmit: (data: unknown) => void;
     isGenerating: boolean;
 }
 

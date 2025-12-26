@@ -18,7 +18,11 @@ interface Message {
 }
 
 interface InterviewSessionProps {
-    config: any;
+    config: {
+        role: string;
+        companyType: string;
+        round: string;
+    }
 }
 
 export function InterviewSession({ config }: InterviewSessionProps) {

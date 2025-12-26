@@ -10,7 +10,7 @@ export default function CoverLetterPage() {
     const [letter, setLetter] = useState("");
     const { generate, isGenerating } = useCoverLetter();
 
-    const handleGenerate = async (formData: any) => {
+    const handleGenerate = async (formData: unknown) => {
         try {
             const data = await generate(formData);
             setLetter(data.letter);
