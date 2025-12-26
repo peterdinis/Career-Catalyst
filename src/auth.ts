@@ -1,18 +1,18 @@
-import NextAuth from "next-auth";
-import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { db } from "./db";
-import Credentials from "next-auth/providers/credentials";
-import { users } from "./db/schema";
-import { eq } from "drizzle-orm";
-import bcrypt from "bcryptjs";
+import NextAuth from 'next-auth';
+import { DrizzleAdapter } from '@auth/drizzle-adapter';
+import { db } from './db';
+import Credentials from 'next-auth/providers/credentials';
+import { users } from './db/schema';
+import { eq } from 'drizzle-orm';
+import bcrypt from 'bcryptjs';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: DrizzleAdapter(db),
     providers: [
         Credentials({
             credentials: {
-                email: { label: "Email", type: "email" },
-                password: { label: "Password", type: "password" },
+                email: { label: 'Email', type: 'email' },
+                password: { label: 'Password', type: 'password' },
             },
             authorize: async (credentials) => {
                 if (!credentials?.email || !credentials?.password) {
@@ -32,7 +32,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     return null;
                 }
 
-                const passwordsMatch = await bcrypt.compare(password, user.password);
+                const passwordsMatch = await bcrypt.compare(
+                    password,
+                    user.password
+                );
 
                 if (!passwordsMatch) {
                     return null;
@@ -43,10 +46,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         }),
     ],
     session: {
-        strategy: "jwt",
+        strategy: 'jwt',
     },
     pages: {
-        signIn: "/login",
+        signIn: '/login',
     },
     callbacks: {
         async jwt({ token, user }) {

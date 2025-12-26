@@ -1,23 +1,23 @@
-import useSWRMutation from "swr/mutation";
+import useSWRMutation from 'swr/mutation';
 
 interface Message {
-    role: "user" | "assistant";
+    role: 'user' | 'assistant';
     content: string;
-    feedback?: any;
+    feedback?: unknown;
 }
 
 async function sendInterviewMessage(
     url: string,
-    { arg }: { arg: { messages: Message[]; config: any } }
+    { arg }: { arg: { messages: Message[]; config: unknown } }
 ) {
     const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(arg),
     });
 
     if (!response.ok) {
-        throw new Error("Failed to send message");
+        throw new Error('Failed to send message');
     }
 
     return response.json();
@@ -25,7 +25,7 @@ async function sendInterviewMessage(
 
 export function useInterviewSession() {
     const { trigger, data, isMutating, error } = useSWRMutation(
-        "/api/interview-chat",
+        '/api/interview-chat',
         sendInterviewMessage
     );
 

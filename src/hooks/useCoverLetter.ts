@@ -1,17 +1,14 @@
-import useSWRMutation from "swr/mutation";
+import useSWRMutation from 'swr/mutation';
 
-async function generateCoverLetter(
-    url: string,
-    { arg }: { arg: any }
-) {
+async function generateCoverLetter(url: string, { arg }: { arg: unknown }) {
     const response = await fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(arg),
     });
 
     if (!response.ok) {
-        throw new Error("Failed to generate");
+        throw new Error('Failed to generate');
     }
 
     return response.json() as Promise<{ letter: string }>;
@@ -19,7 +16,7 @@ async function generateCoverLetter(
 
 export function useCoverLetter() {
     const { trigger, data, isMutating, error } = useSWRMutation(
-        "/api/generate-cover-letter",
+        '/api/generate-cover-letter',
         generateCoverLetter
     );
 

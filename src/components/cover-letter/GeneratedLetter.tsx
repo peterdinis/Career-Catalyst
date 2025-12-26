@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Check, Copy, Download, RefreshCw } from "lucide-react";
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Check, Copy, Download, RefreshCw } from 'lucide-react';
 
 interface GeneratedLetterProps {
     letter: string;
@@ -40,7 +40,8 @@ export function GeneratedLetter({ letter, onReset }: GeneratedLetterProps) {
                     >
                         {copied ? (
                             <>
-                                <Check className="h-4 w-4 text-green-500" /> Copied
+                                <Check className="h-4 w-4 text-green-500" />{' '}
+                                Copied
                             </>
                         ) : (
                             <>

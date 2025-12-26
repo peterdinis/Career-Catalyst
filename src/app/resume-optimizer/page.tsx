@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { ResumeUploader } from "@/components/resume/ResumeUploader";
-import { AnalysisDashboard } from "@/components/resume/AnalysisDashboard";
-import { AnalysisResult } from "@/types/resume";
-import { motion } from "framer-motion";
-import { ArrowRight, Loader2 } from "lucide-react";
-import { useResumeAnalysis } from "@/hooks/useResumeAnalysis";
+import { useState } from 'react';
+import { ResumeUploader } from '@/components/resume/ResumeUploader';
+import { AnalysisDashboard } from '@/components/resume/AnalysisDashboard';
+import { AnalysisResult } from '@/types/resume';
+import { motion } from 'framer-motion';
+import { ArrowRight, Loader2 } from 'lucide-react';
+import { useResumeAnalysis } from '@/hooks/useResumeAnalysis';
 
 export default function ResumeOptimizerPage() {
     const [file, setFile] = useState<File | null>(null);
-    const [jobDescription, setJobDescription] = useState("");
+    const [jobDescription, setJobDescription] = useState('');
     const [result, setResult] = useState<AnalysisResult | null>(null);
     const { analyze, isAnalyzing } = useResumeAnalysis();
 
@@ -24,7 +24,7 @@ export default function ResumeOptimizerPage() {
             });
             setResult(data);
         } catch (error) {
-            console.error("Analysis failed", error);
+            console.error('Analysis failed', error);
         }
     };
 
@@ -32,16 +32,19 @@ export default function ResumeOptimizerPage() {
         if (!result) return;
 
         try {
-            const { saveResume } = await import("@/app/actions/resume");
-            const response = await saveResume(`Resume Analysis - ${new Date().toLocaleDateString()}`, result);
+            const { saveResume } = await import('@/app/actions/resume');
+            const response = await saveResume(
+                `Resume Analysis - ${new Date().toLocaleDateString()}`,
+                result
+            );
 
             if (response.error) {
-                alert("Failed to save");
+                alert('Failed to save');
             } else {
-                alert("Saved to Dashboard!");
+                alert('Saved to Dashboard!');
             }
         } catch (error) {
-            console.error("Failed to save", error);
+            console.error('Failed to save', error);
         }
     };
 
@@ -54,8 +57,8 @@ export default function ResumeOptimizerPage() {
             >
                 <h1 className="text-4xl font-bold mb-4">Resume Optimizer</h1>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Upload your resume and the job description to get a detailed ATS analysis
-                    and actionable improvements.
+                    Upload your resume and the job description to get a detailed
+                    ATS analysis and actionable improvements.
                 </p>
             </motion.div>
 
@@ -67,17 +70,27 @@ export default function ResumeOptimizerPage() {
                 >
                     <div className="space-y-6">
                         <div className="glass-card p-6 rounded-xl">
-                            <h2 className="text-lg font-semibold mb-4">1. Upload Resume</h2>
-                            <ResumeUploader file={file} setFile={setFile} onUpload={() => { }} />
+                            <h2 className="text-lg font-semibold mb-4">
+                                1. Upload Resume
+                            </h2>
+                            <ResumeUploader
+                                file={file}
+                                setFile={setFile}
+                                onUpload={() => {}}
+                            />
                         </div>
                     </div>
 
                     <div className="space-y-6">
                         <div className="glass-card p-6 rounded-xl h-full flex flex-col">
-                            <h2 className="text-lg font-semibold mb-4">2. Job Description</h2>
+                            <h2 className="text-lg font-semibold mb-4">
+                                2. Job Description
+                            </h2>
                             <textarea
                                 value={jobDescription}
-                                onChange={(e) => setJobDescription(e.target.value)}
+                                onChange={(e) =>
+                                    setJobDescription(e.target.value)
+                                }
                                 placeholder="Paste the job description here..."
                                 className="flex-1 w-full bg-white/5 border border-white/10 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-primary/50 min-h-[200px]"
                             />
@@ -92,11 +105,13 @@ export default function ResumeOptimizerPage() {
                         >
                             {isAnalyzing ? (
                                 <>
-                                    <Loader2 className="h-5 w-5 animate-spin" /> Analyzing...
+                                    <Loader2 className="h-5 w-5 animate-spin" />{' '}
+                                    Analyzing...
                                 </>
                             ) : (
                                 <>
-                                    Analyze Resume <ArrowRight className="h-5 w-5" />
+                                    Analyze Resume{' '}
+                                    <ArrowRight className="h-5 w-5" />
                                 </>
                             )}
                         </button>

@@ -1,16 +1,23 @@
-"use client";
+'use client';
 
-import { register } from "@/app/actions/auth";
-import Link from "next/link";
-import { useActionState } from "react";
+import { register } from '@/app/actions/auth';
+import Link from 'next/link';
+import { useActionState } from 'react';
 
 const initialState = {
-    error: "",
+    error: '',
 };
 
 export default function RegisterPage() {
-    // @ts-ignore - useActionState types can be tricky with server actions
-    const [state, formAction] = useActionState(register, initialState);
+    const registerAction = async (
+        _state?: typeof initialState,
+        formData?: FormData
+    ) => {
+        if (!formData) return { error: 'No form data provided' };
+        return await register(formData);
+    };
+
+    const [state, formAction] = useActionState(registerAction, initialState);
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-gray-900">
@@ -60,7 +67,7 @@ export default function RegisterPage() {
                     <div>
                         <button
                             type="submit"
-                            className="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="group relative flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                             Register
                         </button>

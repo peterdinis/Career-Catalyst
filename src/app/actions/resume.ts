@@ -1,15 +1,15 @@
-"use server";
+'use server';
 
-import { auth } from "@/auth";
-import { db } from "@/db";
-import { resumes } from "@/db/schema";
-import { revalidatePath } from "next/cache";
+import { auth } from '@/auth';
+import { db } from '@/db';
+import { resumes } from '@/db/schema';
+import { revalidatePath } from 'next/cache';
 
-export async function saveResume(title: string, content: any) {
+export async function saveResume(title: string, content: string) {
     const session = await auth();
 
     if (!session?.user?.id) {
-        return { error: "Unauthorized" };
+        return { error: 'Unauthorized' };
     }
 
     try {
@@ -19,10 +19,10 @@ export async function saveResume(title: string, content: any) {
             content: JSON.stringify(content),
         });
 
-        revalidatePath("/dashboard");
+        revalidatePath('/dashboard');
         return { success: true };
     } catch (error) {
-        console.error("Failed to save resume:", error);
-        return { error: "Failed to save resume" };
+        console.error('Failed to save resume:', error);
+        return { error: 'Failed to save resume' };
     }
 }

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { SetupForm } from "@/components/interview/SetupForm";
-import { InterviewSession } from "@/components/interview/InterviewSession";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import { SetupForm } from '@/components/interview/SetupForm';
+import { InterviewSession } from '@/components/interview/InterviewSession';
+import { motion } from 'framer-motion';
 
 export default function InterviewCoachPage() {
     const [config, setConfig] = useState<any | null>(null);
@@ -17,8 +17,9 @@ export default function InterviewCoachPage() {
             >
                 <h1 className="text-4xl font-bold mb-4">AI Interview Coach</h1>
                 <p className="text-muted-foreground max-w-2xl mx-auto">
-                    Practice with a realistic AI interviewer customized to your target role.
-                    Get instant feedback on your answers and improve your confidence.
+                    Practice with a realistic AI interviewer customized to your
+                    target role. Get instant feedback on your answers and
+                    improve your confidence.
                 </p>
             </motion.div>
 

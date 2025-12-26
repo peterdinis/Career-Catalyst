@@ -1,27 +1,29 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { MessageSquare, Play } from "lucide-react";
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Play } from 'lucide-react';
 
 interface SetupFormProps {
-    onStart: (config: any) => void;
+    onStart: (config: unknown) => void;
 }
 
 export function SetupForm({ onStart }: SetupFormProps) {
     const [config, setConfig] = useState({
-        role: "Software Engineer",
-        companyType: "Tech Giant",
-        seniority: "Mid-Level",
-        round: "Technical",
-        difficulty: "Medium",
+        role: 'Software Engineer',
+        companyType: 'Tech Giant',
+        seniority: 'Mid-Level',
+        round: 'Technical',
+        difficulty: 'Medium',
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    const handleChange = (
+        e: ChangeEvent<HTMLSelectElement | HTMLInputElement>
+    ) => {
         setConfig({ ...config, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         onStart(config);
     };
@@ -76,7 +78,9 @@ export function SetupForm({ onStart }: SetupFormProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <label className="text-sm font-medium">Interview Round</label>
+                    <label className="text-sm font-medium">
+                        Interview Round
+                    </label>
                     <select
                         name="round"
                         value={config.round}

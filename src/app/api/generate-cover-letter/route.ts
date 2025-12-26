@@ -1,16 +1,25 @@
-import { NextResponse } from "next/server";
-import { generateWithGemini, isGeminiConfigured } from "@/lib/gemini";
+import { NextResponse } from 'next/server';
+import { generateWithGemini, isGeminiConfigured } from '@/lib/gemini';
 
 export async function POST(req: Request) {
     try {
-        const { jobDescription, companyName, hiringManager, userExperience, tone } = await req.json();
+        const {
+            jobDescription,
+            companyName,
+            hiringManager,
+            userExperience,
+            tone,
+        } = await req.json();
 
         if (!isGeminiConfigured()) {
-            // Return mock response if API key not configured
             await new Promise((resolve) => setTimeout(resolve, 3000));
 
-            const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-            const manager = hiringManager || "Hiring Manager";
+            const date = new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+            });
+            const manager = hiringManager || 'Hiring Manager';
 
             const letter = `
 ${date}
@@ -41,8 +50,12 @@ Sincerely,
         }
 
         // Use Gemini AI for real generation
-        const manager = hiringManager || "Hiring Manager";
-        const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const manager = hiringManager || 'Hiring Manager';
+        const date = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
 
         const prompt = `You are a master copywriter specializing in career documents. Create a compelling, personalized cover letter.
 
@@ -69,10 +82,19 @@ REQUIREMENTS:
 
 Return ONLY the cover letter text, properly formatted with the date (${date}) at the top.`;
 
-        const { cachedData } = await import("@/lib/cache");
+        const { cachedData } = await import('@/lib/cache');
         const getLetter = cachedData(
             () => generateWithGemini(prompt),
-            ["generate-cover-letter", JSON.stringify({ jobDescription, companyName, hiringManager, userExperience, tone })],
+            [
+                'generate-cover-letter',
+                JSON.stringify({
+                    jobDescription,
+                    companyName,
+                    hiringManager,
+                    userExperience,
+                    tone,
+                }),
+            ],
             3600 // 1 hour
         );
 
@@ -80,9 +102,9 @@ Return ONLY the cover letter text, properly formatted with the date (${date}) at
 
         return NextResponse.json({ letter: letter.trim() });
     } catch (error) {
-        console.error("Cover letter generation error:", error);
+        console.error('Cover letter generation error:', error);
         return NextResponse.json(
-            { error: "Failed to generate cover letter" },
+            { error: 'Failed to generate cover letter' },
             { status: 500 }
         );
     }
