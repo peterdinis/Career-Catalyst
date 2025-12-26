@@ -18,13 +18,13 @@ export function Navbar() {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-white/10 dark:border-white/10 border-black/10 bg-background/80 backdrop-blur-md">
+        <nav className="sticky top-0 z-50 w-full border-b dark:border-white/10 border-black/10 bg-background/80 backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4">
                 <Link href="/" className="flex items-center gap-2 font-bold text-xl tracking-tight">
                     <div className="p-1.5 bg-primary rounded-lg">
                         <Briefcase className="h-5 w-5 text-white" />
                     </div>
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60">
+                    <span className="bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/60">
                         CareerCatalyst
                     </span>
                 </Link>
@@ -58,7 +58,7 @@ export function Navbar() {
                 <div className="flex items-center gap-4">
                     <button
                         onClick={toggleTheme}
-                        className="p-2 rounded-lg hover:bg-white/10 dark:hover:bg-white/10 hover:bg-black/5 transition-colors"
+                        className="p-2 rounded-lg dark:hover:bg-white/10 hover:bg-black/5 transition-colors"
                         aria-label="Toggle theme"
                     >
                         {theme === "dark" ? (

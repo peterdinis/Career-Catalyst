@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback} from "react";
 import { useDropzone } from "react-dropzone";
 import { UploadCloud, FileText, X, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";

@@ -6,7 +6,6 @@ export async function POST(req: Request) {
         const { jobDescription, companyName, hiringManager, userExperience, tone } = await req.json();
 
         if (!isGeminiConfigured()) {
-            // Return mock response if API key not configured
             await new Promise((resolve) => setTimeout(resolve, 3000));
 
             const date = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });

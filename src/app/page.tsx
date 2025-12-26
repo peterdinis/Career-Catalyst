@@ -86,9 +86,9 @@ export default function Home() {
               href={feature.href}
               className="group block p-8 rounded-2xl glass-card hover:bg-white/5 transition-all hover:scale-[1.02] border border-white/10 relative overflow-hidden"
             >
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${feature.color} opacity-10 blur-2xl rounded-full -mr-16 -mt-16 transition-opacity group-hover:opacity-20`} />
+              <div className={`absolute top-0 right-0 w-32 h-32 bg-linear-to-br ${feature.color} opacity-10 blur-2xl rounded-full -mr-16 -mt-16 transition-opacity group-hover:opacity-20`} />
 
-              <div className={`p-3 rounded-xl bg-gradient-to-br ${feature.color} w-fit mb-4`}>
+              <div className={`p-3 rounded-xl bg-linear-to-br ${feature.color} w-fit mb-4`}>
                 <feature.icon className="h-6 w-6 text-white" />
               </div>
 

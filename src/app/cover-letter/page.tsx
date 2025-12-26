@@ -24,7 +24,6 @@ export default function CoverLetterPage() {
 
         try {
             const { saveCoverLetter } = await import("@/app/actions/cover-letter");
-            // Note: We might want to store form data in state to pass here
             const response = await saveCoverLetter(
                 `Cover Letter - ${new Date().toLocaleDateString()}`,
                 letter,
