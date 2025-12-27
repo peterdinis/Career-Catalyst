@@ -1,23 +1,24 @@
 import {
-    sqliteTable,
+    pgTable,
     text,
     integer,
+    timestamp,
     primaryKey,
-} from 'drizzle-orm/sqlite-core';
+} from 'drizzle-orm/pg-core';
 import type { AdapterAccountType } from 'next-auth/adapters';
 
-export const users = sqliteTable('user', {
+export const users = pgTable('user', {
     id: text('id')
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
     name: text('name'),
     email: text('email').unique(),
-    emailVerified: integer('emailVerified', { mode: 'timestamp_ms' }),
+    emailVerified: timestamp('emailVerified', { mode: 'date' }),
     image: text('image'),
     password: text('password'),
 });
 
-export const accounts = sqliteTable(
+export const accounts = pgTable(
     'account',
     {
         userId: text('userId')
@@ -41,20 +42,20 @@ export const accounts = sqliteTable(
     })
 );
 
-export const sessions = sqliteTable('session', {
+export const sessions = pgTable('session', {
     sessionToken: text('sessionToken').primaryKey(),
     userId: text('userId')
         .notNull()
         .references(() => users.id, { onDelete: 'cascade' }),
-    expires: integer('expires', { mode: 'timestamp_ms' }).notNull(),
+    expires: timestamp('expires', { mode: 'date' }).notNull(),
 });
 
-export const verificationTokens = sqliteTable(
+export const verificationTokens = pgTable(
     'verificationToken',
     {
         identifier: text('identifier').notNull(),
         token: text('token').notNull(),
-        expires: integer('expires', { mode: 'timestamp_ms' }).notNull(),
+        expires: timestamp('expires', { mode: 'date' }).notNull(),
     },
     (verificationToken) => ({
         compositePk: primaryKey({
@@ -63,7 +64,7 @@ export const verificationTokens = sqliteTable(
     })
 );
 
-export const resumes = sqliteTable('resume', {
+export const resumes = pgTable('resume', {
     id: text('id')
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -72,12 +73,12 @@ export const resumes = sqliteTable('resume', {
         .references(() => users.id, { onDelete: 'cascade' }),
     title: text('title').notNull(),
     content: text('content').notNull(), // JSON string of analysis result
-    createdAt: integer('createdAt', { mode: 'timestamp_ms' })
+    createdAt: timestamp('createdAt', { mode: 'date' })
         .notNull()
         .$defaultFn(() => new Date()),
 });
 
-export const coverLetters = sqliteTable('coverLetter', {
+export const coverLetters = pgTable('coverLetter', {
     id: text('id')
         .primaryKey()
         .$defaultFn(() => crypto.randomUUID()),
@@ -88,7 +89,7 @@ export const coverLetters = sqliteTable('coverLetter', {
     content: text('content').notNull(),
     jobDescription: text('jobDescription'),
     companyName: text('companyName'),
-    createdAt: integer('createdAt', { mode: 'timestamp_ms' })
+    createdAt: timestamp('createdAt', { mode: 'date' })
         .notNull()
         .$defaultFn(() => new Date()),
 });

@@ -26,7 +26,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                     .select()
                     .from(users)
                     .where(eq(users.email, email))
-                    .get();
+                    .then((res) => res[0]);
 
                 if (!user || !user.password) {
                     return null;
