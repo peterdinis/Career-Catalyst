@@ -6,6 +6,12 @@ const nextConfig: NextConfig = {
     experimental: {
         typedEnv: true,
         optimizePackageImports: ['lucide-react', 'framer-motion'],
+        optimizeCss: true,
+        browserDebugInfoInTerminal: true
+    },
+    typedRoutes: true,
+    devIndicators: {
+        position: "top-right"
     },
 };
 
