@@ -85,7 +85,7 @@ export function InterviewSession({ config }: InterviewSessionProps) {
     };
 
     return (
-        <div className="flex flex-col h-[700px] w-full max-w-4xl mx-auto glass-card rounded-2xl overflow-hidden">
+        <div className="flex flex-col h-175 w-full max-w-4xl mx-auto glass-card rounded-2xl overflow-hidden">
             {/* Header */}
             <div className="p-4 border-b border-white/10 bg-white/5 flex items-center justify-between">
                 <div>

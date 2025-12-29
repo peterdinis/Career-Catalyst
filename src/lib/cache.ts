@@ -1,17 +1,15 @@
 import { unstable_cache } from 'next/cache';
 
-// Helper to cache async functions (DB calls, API fetches)
 export const cachedData = <T>(
     fetcher: () => Promise<T>,
     keys: string[],
-    revalidate: number = 3600 // 1 hour default
+    revalidate: number = 3600 
 ) => {
     return unstable_cache(fetcher, keys, {
         revalidate,
     });
 };
 
-// Example usage wrapper for fetch
 export async function cachedFetch<T>(
     url: string,
     options?: RequestInit,
