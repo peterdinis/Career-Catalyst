@@ -3,7 +3,7 @@ import { unstable_cache } from 'next/cache';
 export const cachedData = <T>(
     fetcher: () => Promise<T>,
     keys: string[],
-    revalidate: number = 3600 
+    revalidate: number = 3600
 ) => {
     return unstable_cache(fetcher, keys, {
         revalidate,
