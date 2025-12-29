@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { ResumeUploader } from '@/components/resume/ResumeUploader';
 import { AnalysisDashboard } from '@/components/resume/AnalysisDashboard';
-import { AnalysisResult } from '@/types/resume';
 import { motion } from 'framer-motion';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { useResumeAnalysis } from '@/hooks/useResumeAnalysis';
@@ -11,7 +10,7 @@ import { useResumeAnalysis } from '@/hooks/useResumeAnalysis';
 export default function ResumeOptimizerPage() {
     const [file, setFile] = useState<File | null>(null);
     const [jobDescription, setJobDescription] = useState('');
-    const [result, setResult] = useState<AnalysisResult | null>(null);
+    const [result, setResult] = useState<any | null>(null);
     const { analyze, isAnalyzing } = useResumeAnalysis();
 
     const handleAnalyze = async () => {

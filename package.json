@@ -13,6 +13,7 @@
     "dependencies": {
         "@auth/drizzle-adapter": "^1.11.1",
         "@google/generative-ai": "^0.24.1",
+        "@hookform/resolvers": "^5.2.2",
         "@types/bcryptjs": "^2.4.6",
         "bcryptjs": "^3.0.3",
         "clsx": "^2.1.1",
@@ -25,8 +26,10 @@
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
         "react-dropzone": "^14.3.8",
+        "react-hook-form": "^7.69.0",
         "swr": "^2.3.8",
-        "tailwind-merge": "^3.4.0"
+        "tailwind-merge": "^3.4.0",
+        "zod": "^4.2.1"
     },
     "devDependencies": {
         "@tailwindcss/postcss": "^4.1.18",
