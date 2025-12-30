@@ -111,7 +111,7 @@ export function CoverLetterForm({
             <button
                 type="submit"
                 disabled={isGenerating}
-                className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 text-lg"
+                className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-black dark:text-white px-8 py-4 rounded-xl font-semibold transition-all shadow-lg shadow-primary/25 flex items-center justify-center gap-2 text-lg"
             >
                 {isGenerating ? (
                     <>
