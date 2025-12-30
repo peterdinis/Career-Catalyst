@@ -91,7 +91,7 @@ export default function ResumeOptimizerPage() {
                                     setJobDescription(e.target.value)
                                 }
                                 placeholder="Paste the job description here..."
-                                className="flex-1 w-full bg-white/5 border border-white/10 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-primary/50 min-h-[200px]"
+                                className="flex-1 w-full bg-white/5 border border-white/10 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-primary/50 min-h-50"
                             />
                         </div>
                     </div>
