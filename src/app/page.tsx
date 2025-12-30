@@ -71,7 +71,7 @@ export default function Home() {
                 <div className="flex gap-4 justify-center">
                     <Link
                         href="/resume-optimizer"
-                        className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full font-semibold transition-all shadow-lg shadow-primary/25 flex items-center gap-2"
+                        className="bg-primary hover:bg-primary/90 text-white dark:text-neutral-100 px-8 py-3 rounded-full font-semibold transition-all shadow-lg shadow-primary/25 flex items-center gap-2"
                     >
                         Start Optimizing <ArrowRight className="h-4 w-4" />
                     </Link>

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
+import { UrlObject } from 'url';
 
 const navItems = [
     { name: 'Resume Optimizer', href: '/resume-optimizer', icon: FileText },
@@ -30,9 +31,10 @@ export function Navbar() {
                 <Link
                     href="/"
                     className="flex items-center gap-2 font-bold text-xl tracking-tight"
+                    prefetch={true}
                 >
                     <div className="p-1.5 bg-primary rounded-lg">
-                        <Briefcase className="h-5 w-5 text-white" />
+                        <Briefcase className="h-5 w-5 text-white dark:text-neutral-700" />
                     </div>
                     <span className="bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/60">
                         CareerCatalyst
@@ -45,24 +47,25 @@ export function Navbar() {
                         return (
                             <Link
                                 key={item.href}
-                                href={item.href}
+                                href={item.href as unknown as UrlObject}
                                 className={cn(
-                                    'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary',
+                                    'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary relative py-2 px-1', // Pridané padding
                                     isActive
                                         ? 'text-primary'
                                         : 'text-muted-foreground'
                                 )}
+                                prefetch={true}
                             >
                                 <item.icon className="h-4 w-4" />
                                 {item.name}
                                 {isActive && (
                                     <motion.div
                                         layoutId="navbar-indicator"
-                                        className="absolute bottom-0 h-0.5 w-full bg-primary"
+                                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                                        initial={false}
                                         transition={{
-                                            type: 'spring',
-                                            bounce: 0.2,
-                                            duration: 0.6,
+                                            type: 'tween',
+                                            duration: 0.2,
                                         }}
                                     />
                                 )}
@@ -83,12 +86,20 @@ export function Navbar() {
                             <Moon className="h-5 w-5 text-primary" />
                         )}
                     </button>
-                    <button className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                    <Link
+                        href="/login"
+                        className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                        prefetch={true}
+                    >
                         Sign In
-                    </button>
-                    <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25">
+                    </Link>
+                    <Link
+                        href="/register"
+                        className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25"
+                        prefetch={true}
+                    >
                         Get Started
-                    </button>
+                    </Link>
                 </div>
             </div>
         </nav>

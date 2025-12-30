@@ -100,7 +100,7 @@ export default function ResumeOptimizerPage() {
                         <button
                             onClick={handleAnalyze}
                             disabled={!file || !jobDescription || isAnalyzing}
-                            className="bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-white px-8 py-4 rounded-full font-semibold transition-all shadow-lg shadow-primary/25 flex items-center gap-2 text-lg"
+                            className="bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-black dark:text-white ark:text-neutral-100 px-8 py-4 rounded-full font-semibold transition-all shadow-lg shadow-primary/25 flex items-center gap-2 text-lg"
                         >
                             {isAnalyzing ? (
                                 <>
