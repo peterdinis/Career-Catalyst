@@ -107,7 +107,7 @@ export default function RegisterPage() {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+        <div className="flex min-h-screen items-center justify-center">
             <div className="w-full max-w-md">
                 <div className="rounded-2xl bg-white/80 backdrop-blur-sm p-8 shadow-xl dark:bg-gray-800/80">
                     <div className="text-center mb-10">
