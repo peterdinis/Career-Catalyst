@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { ArrowRight, FileText, MessageSquare, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { UrlObject } from 'url';
 
 const features = [
     {
@@ -86,7 +87,7 @@ export default function Home() {
                 {features.map((feature) => (
                     <motion.div key={feature.title} variants={item}>
                         <Link
-                            href={feature.href}
+                            href={feature.href as unknown as UrlObject}
                             className="group block p-8 rounded-2xl glass-card hover:bg-white/5 transition-all hover:scale-[1.02] border border-white/10 relative overflow-hidden"
                         >
                             <div

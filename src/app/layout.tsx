@@ -45,22 +45,6 @@ export const metadata: Metadata = {
         description:
             'Transform your career with AI-powered tools. Optimize your resume, generate personalized cover letters, and practice interviews with our intelligent career assistant.',
         siteName: 'CareerCatalyst',
-        images: [
-            {
-                url: '/og-image.png',
-                width: 1200,
-                height: 630,
-                alt: 'CareerCatalyst - AI Career Assistant',
-            },
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'CareerCatalyst | AI-Powered Career Assistant',
-        description:
-            'Transform your career with AI-powered tools. Optimize resumes, generate cover letters, and practice interviews.',
-        images: ['/twitter-image.png'],
-        creator: '@careercatalyst',
     },
     robots: {
         index: true,
@@ -73,21 +57,6 @@ export const metadata: Metadata = {
             'max-snippet': -1,
         },
     },
-    icons: {
-        icon: [
-            { url: '/favicon.ico' },
-            { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
-            { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
-        ],
-        apple: [
-            {
-                url: '/apple-touch-icon.png',
-                sizes: '180x180',
-                type: 'image/png',
-            },
-        ],
-    },
-    manifest: '/site.webmanifest',
     category: 'career development',
     applicationName: 'CareerCatalyst',
     appleWebApp: {
