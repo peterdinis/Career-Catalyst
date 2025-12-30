@@ -31,7 +31,7 @@ export function Navbar() {
                 <Link
                     href="/"
                     className="flex items-center gap-2 font-bold text-xl tracking-tight"
-                    prefetch={true} 
+                    prefetch={true}
                 >
                     <div className="p-1.5 bg-primary rounded-lg">
                         <Briefcase className="h-5 w-5 text-white dark:text-neutral-700" />
@@ -49,7 +49,7 @@ export function Navbar() {
                                 key={item.href}
                                 href={item.href as unknown as UrlObject}
                                 className={cn(
-                                    'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary relative py-2 px-1',  // Pridané padding
+                                    'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary relative py-2 px-1', // Pridané padding
                                     isActive
                                         ? 'text-primary'
                                         : 'text-muted-foreground'
@@ -62,7 +62,7 @@ export function Navbar() {
                                     <motion.div
                                         layoutId="navbar-indicator"
                                         className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                                        initial={false} 
+                                        initial={false}
                                         transition={{
                                             type: 'tween',
                                             duration: 0.2,
@@ -86,15 +86,15 @@ export function Navbar() {
                             <Moon className="h-5 w-5 text-primary" />
                         )}
                     </button>
-                    <Link 
-                        href="/login" 
+                    <Link
+                        href="/login"
                         className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                         prefetch={true}
                     >
                         Sign In
                     </Link>
-                    <Link 
-                        href="/register" 
+                    <Link
+                        href="/register"
                         className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-lg shadow-primary/25"
                         prefetch={true}
                     >
