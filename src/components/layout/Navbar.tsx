@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTheme } from './ThemeProvider';
+import { UrlObject } from 'url';
 
 const navItems = [
     { name: 'Resume Optimizer', href: '/resume-optimizer', icon: FileText },
@@ -45,7 +46,7 @@ export function Navbar() {
                         return (
                             <Link
                                 key={item.href}
-                                href={item.href}
+                                href={item.href as unknown as UrlObject}
                                 className={cn(
                                     'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary',
                                     isActive
